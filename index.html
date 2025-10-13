@@ -1,0 +1,668 @@
+<!DOCTYPE html>
+<html lang="ro" style="scroll-behavior: smooth;">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Propunere Parteneriat - Heading for the Future 2025</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://unpkg.com/lucide@latest"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;700;900&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Inter', sans-serif;
+        }
+        .slide {
+            min-height: 100vh;
+            width: 100%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            padding: 4rem 1rem;
+        }
+        @media (min-width: 768px) {
+            .slide {
+                padding: 4rem 2rem;
+            }
+        }
+        .bar {
+            width: 0;
+            transition: width 1s ease-in-out;
+        }
+        .nav-dots {
+            position: fixed;
+            right: 20px;
+            top: 50%;
+            transform: translateY(-50%);
+            display: none; /* Hidden on mobile */
+            flex-direction: column;
+            gap: 15px;
+            z-index: 50;
+        }
+        @media (min-width: 768px) {
+            .nav-dots {
+                display: flex;
+            }
+        }
+        .nav-dot {
+            width: 12px;
+            height: 12px;
+            background-color: #cbd5e1;
+            border-radius: 50%;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+        .nav-dot:hover {
+            background-color: #16a34a;
+        }
+        .nav-dot.active {
+            background-color: #16a34a;
+            transform: scale(1.5);
+        }
+        @keyframes bounce {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+        .bounce-arrow {
+            animation: bounce 2s infinite;
+        }
+
+        /* --- Custom Styles for Packages --- */
+        .package-card-content {
+            transition: opacity 0.3s ease-in-out, filter 0.3s ease-in-out;
+        }
+        .package-card-details {
+            position: absolute;
+            inset: 0;
+            opacity: 0;
+            visibility: hidden;
+            transition: opacity 0.3s ease-in-out, visibility 0.3s ease-in-out;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            padding: 1.5rem;
+            border-radius: 1rem;
+            font-size: 1rem;
+        }
+        @media (min-width: 1024px) {
+            .package-card-details {
+                padding: 2.5rem;
+                font-size: 1.125rem;
+            }
+        }
+        .group:hover .package-card-content {
+            opacity: 0.1;
+            filter: blur(4px);
+        }
+        .group:hover .package-card-details {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        /* --- Custom Styles for KPI Cards --- */
+        .kpi-card-details {
+            position: absolute;
+            inset: 0;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            justify-content: center;
+            padding: 1rem;
+            background-color: rgba(22, 163, 74, 0.95);
+            color: white;
+            text-align: center;
+            font-size: 0.875rem;
+            transform: translateY(100%);
+            transition: transform 0.4s cubic-bezier(0.25, 0.46, 0.45, 0.94);
+        }
+         @media (min-width: 768px) {
+            .kpi-card-details {
+                font-size: 1rem;
+                padding: 1.5rem;
+            }
+        }
+        .group:hover .kpi-card-details {
+            transform: translateY(0);
+        }
+
+        /* --- Neon Border Effect --- */
+        .neon-border {
+            box-shadow: 0 0 4px rgba(22, 163, 74, 0.4), 0 0 8px rgba(22, 163, 74, 0.3);
+            transition: box-shadow 0.3s ease-in-out;
+        }
+        .neon-border:hover {
+            box-shadow: 0 0 8px rgba(22, 163, 74, 0.6), 0 0 16px rgba(22, 163, 74, 0.5);
+        }
+        
+        /* --- Interactive Pie Chart Styles --- */
+        .pie-slice {
+            cursor: pointer;
+            transition: transform 0.3s cubic-bezier(0.175, 0.885, 0.32, 1.275), filter 0.3s ease-in-out;
+            transform: scale(0);
+            opacity: 0;
+        }
+        .pie-slice.animate {
+            transform: scale(1);
+            opacity: 1;
+        }
+        .pie-slice:hover {
+            transform: scale(1.08) !important;
+            filter: brightness(1.1) drop-shadow(0 4px 8px rgba(0,0,0,0.2));
+        }
+        .pie-chart-text {
+            font-size: 1.75rem;
+            font-weight: 900;
+            fill: #1e293b;
+        }
+        .pie-chart-subtext {
+            font-size: 1rem;
+            fill: #475569;
+        }
+        .legend-item.dimmed {
+            opacity: 0.5;
+        }
+        .legend-item {
+            transition: opacity 0.3s ease;
+        }
+    </style>
+</head>
+<body class="bg-slate-100 text-slate-800">
+
+    <div class="nav-dots"></div>
+
+    <main>
+        <!-- Slide 1: Titlu -->
+        <section id="slide-1" class="slide bg-gradient-to-br from-green-50 to-emerald-100">
+            <div class="text-center">
+                 <img src="imagini/logo-h4tf-green.png" alt="Heading for the Future Logo" class="w-auto h-40 md:h-56 mx-auto mb-6">
+                <h1 class="text-4xl md:text-6xl font-black text-green-800 mb-4">Heading for the Future</h1>
+                <p class="text-lg md:text-2xl text-slate-600 mb-8">Viitorul nu se așteaptă, se construiește.</p>
+                <p class="text-base md:text-lg text-slate-500">5 Noiembrie – 3 Decembrie 2025</p>
+            </div>
+            <a href="#slide-2" class="absolute bottom-10">
+                 <i data-lucide="arrow-down" class="w-8 h-8 text-slate-400 bounce-arrow"></i>
+            </a>
+        </section>
+
+        <!-- Slide 2: Agendă -->
+        <section id="slide-2" class="slide bg-white">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-slate-800 text-center">Ce veți descoperi în acest raport?</h2>
+            <div class="w-full max-w-4xl space-y-4">
+                <a href="#slide-3" class="block bg-slate-50 p-4 md:p-6 rounded-lg shadow-sm transition-transform hover:scale-105">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <i data-lucide="bar-chart-3" class="w-8 h-8 text-green-600 mr-4"></i>
+                            <span class="text-lg md:text-xl font-semibold">Rezumat Executiv & Cifre Locale</span>
+                        </div>
+                        <span class="text-lg md:text-xl font-bold text-slate-400">01</span>
+                    </div>
+                </a>
+                <a href="#slide-4" class="block bg-slate-50 p-4 md:p-6 rounded-lg shadow-sm transition-transform hover:scale-105">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <i data-lucide="graduation-cap" class="w-8 h-8 text-green-600 mr-4"></i>
+                            <span class="text-lg md:text-xl font-semibold">Profilul Participanților (Local)</span>
+                        </div>
+                        <span class="text-lg md:text-xl font-bold text-slate-400">02</span>
+                    </div>
+                </a>
+                <a href="#slide-8" class="block bg-slate-50 p-4 md:p-6 rounded-lg shadow-sm transition-transform hover:scale-105">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <i data-lucide="globe" class="w-8 h-8 text-green-600 mr-4"></i>
+                            <span class="text-lg md:text-xl font-semibold">Impact la Nivel Național</span>
+                        </div>
+                        <span class="text-lg md:text-xl font-bold text-slate-400">03</span>
+                    </div>
+                </a>
+                 <a href="#slide-9" class="block bg-slate-50 p-4 md:p-6 rounded-lg shadow-sm transition-transform hover:scale-105">
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center">
+                            <i data-lucide="briefcase" class="w-8 h-8 text-green-600 mr-4"></i>
+                            <span class="text-lg md:text-xl font-semibold">Oportunități de Parteneriat</span>
+                        </div>
+                        <span class="text-lg md:text-xl font-bold text-slate-400">04</span>
+                    </div>
+                </a>
+            </div>
+        </section>
+        
+        <!-- Slide 3: Rezumat Executiv -->
+        <section id="slide-3" class="slide bg-slate-50">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-slate-800 text-center">Succesul Evenimentului (Cluj-Napoca)</h2>
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8 w-full max-w-6xl">
+                <div class="bg-white rounded-xl shadow-lg text-center p-4 md:p-6 transition-transform hover:scale-105">
+                    <h3 class="text-4xl md:text-5xl font-bold text-green-600">152</h3>
+                    <p class="mt-2 text-sm md:text-base text-gray-600">Participanți</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg text-center p-4 md:p-6 transition-transform hover:scale-105">
+                    <h3 class="text-4xl md:text-5xl font-bold text-green-600">4.7/5</h3>
+                    <p class="mt-2 text-sm md:text-base text-gray-600">Satisfacție Generală</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg text-center p-4 md:p-6 transition-transform hover:scale-105">
+                    <h3 class="text-4xl md:text-5xl font-bold text-green-600">58%</h3>
+                    <p class="mt-2 text-sm md:text-base text-gray-600">Gen Feminin</p>
+                </div>
+                <div class="bg-white rounded-xl shadow-lg text-center p-4 md:p-6 transition-transform hover:scale-105">
+                    <h3 class="text-4xl md:text-5xl font-bold text-green-600">92%</h3>
+                    <p class="mt-2 text-sm md:text-base text-gray-600">Rată de Recomandare</p>
+                </div>
+            </div>
+            <p class="mt-12 text-lg md:text-xl text-gray-700 italic max-w-3xl text-center">"O platformă esențială pentru a conecta tinerii cu potențial la oportunitățile de carieră potrivite."</p>
+        </section>
+
+        <!-- Slide 4: Profil Academic -->
+        <section id="slide-4" class="slide bg-white">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-slate-800 self-center text-center">Profil Academic (Cluj-Napoca)</h2>
+            <div class="w-full max-w-7xl grid grid-cols-1 md:grid-cols-2 gap-12 md:gap-16 items-center">
+                <div class="w-full flex flex-col justify-center items-center gap-8">
+                    <h3 class="font-semibold text-xl md:text-2xl">Distribuție pe Universități</h3>
+                    <div id="pie-chart-container">
+                        <!-- SVG Pie chart generated here -->
+                    </div>
+                    <div id="pie-legend" class="flex flex-wrap items-center justify-center gap-4 md:gap-6 text-base md:text-lg">
+                         <!-- Legend generated here -->
+                    </div>
+                </div>
+                <div class="w-full">
+                    <h3 class="font-semibold text-xl md:text-2xl mb-8 text-center md:text-left">Top 5 Facultăți</h3>
+                     <div class="space-y-4">
+                        <div class="bg-slate-100 p-4 rounded-lg shadow-sm">
+                            <div class="flex justify-between items-center mb-1"><p>FSEGA</p><p class="font-bold">30%</p></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bar bg-green-600 h-2.5 rounded-full" style="--target-width: 30%"></div></div>
+                        </div>
+                        <div class="bg-slate-100 p-4 rounded-lg shadow-sm">
+                            <div class="flex justify-between items-center mb-1"><p>Matematică și Informatică</p><p class="font-bold">25%</p></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bar bg-green-500 h-2.5 rounded-full" style="--target-width: 25%"></div></div>
+                        </div>
+                        <div class="bg-slate-100 p-4 rounded-lg shadow-sm">
+                            <div class="flex justify-between items-center mb-1"><p>Automatică și Calculatoare</p><p class="font-bold">20%</p></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bar bg-yellow-500 h-2.5 rounded-full" style="--target-width: 20%"></div></div>
+                        </div>
+                        <div class="bg-slate-100 p-4 rounded-lg shadow-sm">
+                            <div class="flex justify-between items-center mb-1"><p>Business</p><p class="font-bold">15%</p></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bar bg-purple-500 h-2.5 rounded-full" style="--target-width: 15%"></div></div>
+                        </div>
+                        <div class="bg-slate-100 p-4 rounded-lg shadow-sm">
+                            <div class="flex justify-between items-center mb-1"><p>Altele</p><p class="font-bold">10%</p></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bar bg-lime-500 h-2.5 rounded-full" style="--target-width: 10%"></div></div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <!-- Slide 5: Profil Demografic -->
+        <section id="slide-5" class="slide bg-slate-50">
+             <h2 class="text-3xl md:text-4xl font-bold mb-10 text-slate-800 text-center">Interese și Demografie (Cluj-Napoca)</h2>
+            <div class="flex flex-col md:flex-row gap-12 md:gap-16 w-full max-w-6xl justify-center items-center">
+                <div class="w-full md:w-1/2">
+                    <h3 class="font-semibold text-xl mb-4">Gen și Zonă de Reședință</h3>
+                    <div class="space-y-4">
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <div class="flex justify-between items-center mb-1"><p>Feminin</p><p class="font-bold">58%</p></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-green-500 h-2.5 rounded-full" style="width: 58%"></div></div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm">
+                            <div class="flex justify-between items-center mb-1"><p>Masculin</p><p class="font-bold">42%</p></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-purple-500 h-2.5 rounded-full" style="width: 42%"></div></div>
+                        </div>
+                        <div class="bg-white p-4 rounded-lg shadow-sm mt-8">
+                            <div class="flex justify-between items-center mb-1"><p>Urban</p><p class="font-bold">85%</p></div>
+                            <div class="w-full bg-slate-200 rounded-full h-2.5"><div class="bg-cyan-500 h-2.5 rounded-full" style="width: 85%"></div></div>
+                        </div>
+                    </div>
+                </div>
+                <div class="w-full md:w-1/2">
+                    <h3 class="font-semibold text-xl mb-4">Domenii de Interes Profesional</h3>
+                    <div class="w-full space-y-2">
+                         <div class="bg-white p-1 rounded-lg"><div class="bar bg-green-600 text-white text-left p-2 rounded text-sm" style="--target-width: 38%">IT & Software (38%)</div></div>
+                         <div class="bg-white p-1 rounded-lg"><div class="bar bg-green-500 text-white text-left p-2 rounded text-sm" style="--target-width: 24%">Marketing (24%)</div></div>
+                         <div class="bg-white p-1 rounded-lg"><div class="bar bg-[#fdb913] text-slate-800 text-left p-2 rounded text-sm" style="--target-width: 16%">Finanțe & Bănci (16%)</div></div>
+                         <div class="bg-white p-1 rounded-lg"><div class="bar bg-cyan-500 text-white text-left p-2 rounded text-sm" style="--target-width: 12%">Leadership (12%)</div></div>
+                         <div class="bg-white p-1 rounded-lg"><div class="bar bg-lime-500 text-white text-left p-2 rounded text-sm" style="--target-width: 6%">Resurse Umane (6%)</div></div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 6: Așteptări -->
+        <section id="slide-6" class="slide bg-white">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-slate-800 text-center">Ce își doresc participanții?</h2>
+            <div class="w-full max-w-6xl grid grid-cols-1 md:grid-cols-2 gap-8">
+                <div class="bg-slate-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold mb-4 flex items-center"><i data-lucide="lightbulb" class="w-6 h-6 mr-2 text-green-600"></i>Așteptări de la Workshopuri</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Dezvoltarea de skill-uri practice (Hard & Soft Skills)</li>
+                        <li>Oportunități de networking cu profesioniști</li>
+                        <li>Claritate asupra parcursului în carieră</li>
+                        <li>Insight-uri reale din mediul de business</li>
+                    </ul>
+                </div>
+                <div class="bg-slate-50 p-6 rounded-lg">
+                    <h3 class="text-xl font-bold mb-4 flex items-center"><i data-lucide="search" class="w-6 h-6 mr-2 text-green-600"></i>Ce caută la un angajator?</h3>
+                    <ul class="list-disc list-inside space-y-2 text-gray-700">
+                        <li>Cultură organizațională bazată pe suport și creștere</li>
+                        <li>Programe clare de mentorat și dezvoltare</li>
+                        <li>Flexibilitate și echilibru viață-muncă</li>
+                        <li>Impactul muncii lor și alinierea cu valorile personale</li>
+                    </ul>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 7: Valoare pentru Parteneri -->
+        <section id="slide-7" class="slide bg-slate-50">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-slate-800 text-center">Valoare Strategică pentru Parteneri</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl">
+                <div class="bg-white p-8 rounded-xl shadow-lg text-center transition-transform hover:scale-105"><i data-lucide="award" class="w-12 h-12 md:w-16 md:h-16 text-green-600 mx-auto mb-4"></i><h3 class="text-lg md:text-xl font-bold mb-2">Acces la Talente de Top</h3><p class="text-gray-600 text-sm md:text-base">Conectare directă cu studenți proactivi.</p></div>
+                <div class="bg-white p-8 rounded-xl shadow-lg text-center transition-transform hover:scale-105"><i data-lucide="megaphone" class="w-12 h-12 md:w-16 md:h-16 text-green-600 mx-auto mb-4"></i><h3 class="text-lg md:text-xl font-bold mb-2">Branding de Angajator</h3><p class="text-gray-600 text-sm md:text-base">Prezentați-vă cultura într-un cadru autentic.</p></div>
+                <div class="bg-white p-8 rounded-xl shadow-lg text-center transition-transform hover:scale-105"><i data-lucide="handshake" class="w-12 h-12 md:w-16 md:h-16 text-lime-600 mx-auto mb-4"></i><h3 class="text-lg md:text-xl font-bold mb-2">Implicare în Comunitate</h3><p class="text-gray-600 text-sm md:text-base">Contribuiți la formarea viitoarei generații.</p></div>
+            </div>
+        </section>
+
+        <!-- Slide 8: Impact National -->
+        <section id="slide-8" class="slide bg-white">
+             <h2 class="text-3xl md:text-4xl font-bold mb-10 text-slate-800 text-center">Impact la Nivel Național</h2>
+            <div class="grid grid-cols-2 lg:grid-cols-4 gap-4 md:gap-8 w-full max-w-6xl mb-12">
+                <div class="bg-slate-100 rounded-xl relative group overflow-hidden">
+                    <div class="kpi-card-content text-center p-4 md:p-6">
+                        <h3 class="text-4xl md:text-5xl font-bold text-green-600">1200+</h3>
+                        <p class="mt-2 text-sm md:text-base text-gray-600">Participanți Anual</p>
+                    </div>
+                    <div class="kpi-card-details rounded-xl">
+                        <p>Acces la un bazin național de talente, format din cei mai proactivi studenți din țară.</p>
+                    </div>
+                </div>
+                 <div class="bg-slate-100 rounded-xl relative group overflow-hidden">
+                    <div class="kpi-card-content text-center p-4 md:p-6">
+                        <h3 class="text-4xl md:text-5xl font-bold text-green-600">10+</h3>
+                        <p class="mt-2 text-sm md:text-base text-gray-600">Orașe din România</p>
+                    </div>
+                    <div class="kpi-card-details rounded-xl">
+                        <p>Vizibilitate extinsă a brandului de angajator în multiple regiuni, nu doar local.</p>
+                    </div>
+                </div>
+                 <div class="bg-slate-100 rounded-xl relative group overflow-hidden">
+                    <div class="kpi-card-content text-center p-4 md:p-6">
+                        <h3 class="text-4xl md:text-5xl font-bold text-green-600">50+</h3>
+                        <p class="mt-2 text-sm md:text-base text-gray-600">Parteneri Naționali</p>
+                    </div>
+                    <div class="kpi-card-details rounded-xl">
+                        <p>Asocierea cu un proiect de anvergură, susținut de lideri de industrie la nivel național.</p>
+                    </div>
+                </div>
+                 <div class="bg-slate-100 rounded-xl relative group overflow-hidden">
+                    <div class="kpi-card-content text-center p-4 md:p-6">
+                        <h3 class="text-4xl md:text-5xl font-bold text-green-600">250K+</h3>
+                        <p class="mt-2 text-sm md:text-base text-gray-600">Reach Social Media</p>
+                    </div>
+                    <div class="kpi-card-details rounded-xl">
+                        <p>Campanii de marketing cu acoperire națională, ajungând la sute de mii de tineri.</p>
+                    </div>
+                </div>
+            </div>
+            <div class="w-full max-w-4xl">
+                <h3 class="font-semibold text-xl md:text-2xl mb-6 text-center">Domenii de Interes la Nivel Național</h3>
+                 <div class="w-full space-y-2">
+                     <div class="bg-slate-100 p-1 rounded-lg"><div class="bar bg-green-600 text-white text-left p-2 rounded text-sm" style="--target-width: 40%">IT & Tehnologie (40%)</div></div>
+                     <div class="bg-slate-100 p-1 rounded-lg"><div class="bar bg-green-500 text-white text-left p-2 rounded text-sm" style="--target-width: 35%">Business & Economie (35%)</div></div>
+                     <div class="bg-slate-100 p-1 rounded-lg"><div class="bar bg-yellow-500 text-slate-800 text-left p-2 rounded text-sm" style="--target-width: 15%">Marketing & Comunicare (15%)</div></div>
+                     <div class="bg-slate-100 p-1 rounded-lg"><div class="bar bg-purple-500 text-white text-left p-2 rounded text-sm" style="--target-width: 10%">Altele (Inginerie, Drept, etc.)</div></div>
+                </div>
+            </div>
+        </section>
+
+         <!-- Slide 9: Pachete Parteneriat -->
+        <section id="slide-9" class="slide bg-slate-50">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-slate-800 text-center">Oportunități de Parteneriat</h2>
+            <p class="text-lg md:text-xl text-slate-500 -mt-6 mb-12 text-center">Pachetele se referă la evenimentul local din Cluj-Napoca.</p>
+            <div class="w-full max-w-4xl grid grid-cols-1 gap-8 items-stretch">
+                <!-- Pachet Standard -->
+                <div class="bg-white border border-slate-200 p-6 md:p-8 rounded-2xl flex flex-col relative group neon-border">
+                    <div class="package-card-content">
+                        <div class="flex-grow">
+                            <h3 class="text-2xl font-bold text-green-600">Standard</h3>
+                            <p class="text-slate-600 mt-2 mb-6">Pachetul esențial pentru a vă conecta cu viitorii angajați.</p>
+                            <p class="text-5xl font-black text-slate-800">1900€</p>
+                        </div>
+                        <ul class="space-y-4 text-slate-700 mt-8 border-t border-slate-200 pt-6">
+                            <li class="flex items-start"><i data-lucide="check" class="w-6 h-6 text-green-500 mr-3 flex-shrink-0"></i><span><strong>1 Workshop</strong> de 4 săptămâni</span></li>
+                            <li class="flex items-start"><i data-lucide="check" class="w-6 h-6 text-green-500 mr-3 flex-shrink-0"></i><span>Lansare <strong>challenge propriu</strong></span></li>
+                            <li class="flex items-start"><i data-lucide="check" class="w-6 h-6 text-green-500 mr-3 flex-shrink-0"></i><span>Raport de <strong>impact personalizat</strong></span></li>
+                        </ul>
+                    </div>
+                    <div class="package-card-details bg-green-600 text-white">
+                        <ul class="space-y-3">
+                            <li class="flex items-start"><i data-lucide="check-circle" class="w-5 h-5 mr-3 mt-1 flex-shrink-0"></i><span><strong>Workshop de 4 săptămâni</strong> și conectare directă cu tinerii.</span></li>
+                            <li class="flex items-start"><i data-lucide="check-circle" class="w-5 h-5 mr-3 mt-1 flex-shrink-0"></i><span>Posibilitatea de a lansa un <strong>challenge propriu</strong> și a obține soluții inovatoare.</span></li>
+                            <li class="flex items-start"><i data-lucide="check-circle" class="w-5 h-5 mr-3 mt-1 flex-shrink-0"></i><span>Acces la <strong>feedback-ul participanților</strong> pentru insight-uri valoroase.</span></li>
+                            <li class="flex items-start"><i data-lucide="check-circle" class="w-5 h-5 mr-3 mt-1 flex-shrink-0"></i><span><strong>Raport de impact</strong> cu rezultate clare despre vizibilitate şi engagement.</span></li>
+                            <li class="flex items-start"><i data-lucide="check-circle" class="w-5 h-5 mr-3 mt-1 flex-shrink-0"></i><span>Expunere printr-o <strong>postare dedicată pe social media</strong>.</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Pachet Plus -->
+                <div class="bg-white border border-slate-200 p-6 md:p-8 rounded-2xl flex flex-col relative group neon-border">
+                    <div class="package-card-content">
+                        <div class="flex-grow">
+                            <h3 class="text-2xl font-bold text-green-600">Plus</h3>
+                            <p class="text-slate-600 mt-2 mb-6">Maximizați vizibilitatea și accesați direct candidații potriviți.</p>
+                            <p class="text-5xl font-black text-slate-800">2500€</p>
+                        </div>
+                        <ul class="space-y-4 text-slate-700 mt-8 border-t border-slate-200 pt-6">
+                            <li class="flex items-start"><i data-lucide="check" class="w-6 h-6 text-green-500 mr-3 flex-shrink-0"></i><span>Toate beneficiile <strong>Standard</strong></span></li>
+                            <li class="flex items-start"><i data-lucide="check" class="w-6 h-6 text-green-500 mr-3 flex-shrink-0"></i><span>Acces la <strong>CV-urile participanților</strong></span></li>
+                            <li class="flex items-start"><i data-lucide="check" class="w-6 h-6 text-green-500 mr-3 flex-shrink-0"></i><span><strong>Stand de networking</strong> la deschidere</span></li>
+                        </ul>
+                    </div>
+                    <div class="package-card-details bg-green-600 text-white">
+                        <ul class="space-y-3 text-left">
+                            <li class="font-bold text-lg mb-2">Include toate beneficiile Standard, plus:</li>
+                            <li class="flex items-start"><i data-lucide="plus-circle" class="w-5 h-5 mr-3 mt-1 flex-shrink-0"></i><span><strong>Workshop suplimentar</strong> (2 în total) pe teme alese de companie.</span></li>
+                            <li class="flex items-start"><i data-lucide="plus-circle" class="w-5 h-5 mr-3 mt-1 flex-shrink-0"></i><span>Șansă de <strong>expunere națională</strong> pe pagina AIESEC România.</span></li>
+                            <li class="flex items-start"><i data-lucide="plus-circle" class="w-5 h-5 mr-3 mt-1 flex-shrink-0"></i><span><strong>Logo-ul companiei</strong> pe toate materialele de promovare.</span></li>
+                            <li class="flex items-start"><i data-lucide="plus-circle" class="w-5 h-5 mr-3 mt-1 flex-shrink-0"></i><span><strong>Acces la CV-urile</strong> participanților prezenți la workshop-uri.</span></li>
+                            <li class="flex items-start"><i data-lucide="plus-circle" class="w-5 h-5 mr-3 mt-1 flex-shrink-0"></i><span>Spațiu de <strong>networking și stand</strong> la evenimentul de deschidere.</span></li>
+                        </ul>
+                    </div>
+                </div>
+                <!-- Pachet Premium -->
+                <div class="bg-white border border-slate-200 p-6 md:p-8 rounded-2xl flex flex-col relative group neon-border">
+                    <div class="package-card-content">
+                        <div class="flex-grow">
+                            <h3 class="text-2xl font-bold text-green-600">Premium</h3>
+                            <p class="text-slate-600 mt-2 mb-6">Poziționați-vă ca partener strategic și lider de opinie.</p>
+                            <p class="text-5xl font-black text-slate-800">3500€</p>
+                        </div>
+                        <ul class="space-y-4 text-slate-700 mt-8 border-t border-slate-200 pt-6">
+                            <li class="flex items-start"><i data-lucide="check" class="w-6 h-6 text-green-500 mr-3 flex-shrink-0"></i><span>Toate beneficiile <strong>Plus</strong></span></li>
+                            <li class="flex items-start"><i data-lucide="check" class="w-6 h-6 text-green-500 mr-3 flex-shrink-0"></i><span>Participare în <strong>panel la închidere</strong></span></li>
+                            <li class="flex items-start"><i data-lucide="check" class="w-6 h-6 text-green-500 mr-3 flex-shrink-0"></i><span><strong>Mini-interviu</strong> "Youth at Work"</span></li>
+                        </ul>
+                    </div>
+                    <div class="package-card-details bg-green-600 text-white">
+                        <ul class="space-y-3 text-left">
+                             <li class="font-bold text-lg mb-2">Include toate beneficiile Plus, plus:</li>
+                            <li class="flex items-start"><i data-lucide="award" class="w-5 h-5 mr-3 mt-1 flex-shrink-0"></i><span><strong>Încă un workshop</strong> în cadrul evenimentului (3 în total).</span></li>
+                            <li class="flex items-start"><i data-lucide="award" class="w-5 h-5 mr-3 mt-1 flex-shrink-0"></i><span>Expunere în <strong>grupul de alumni AIESEC</strong> de pe Facebook.</span></li>
+                            <li class="flex items-start"><i data-lucide="award" class="w-5 h-5 mr-3 mt-1 flex-shrink-0"></i><span><strong>Logo în semnătura de e-mail</strong> a tuturor membrilor AIESEC.</span></li>
+                            <li class="flex items-start"><i data-lucide="award" class="w-5 h-5 mr-3 mt-1 flex-shrink-0"></i><span>Posibilitatea de a participa la <strong>sesiunea de Panel</strong> de la închiderea evenimentului.</span></li>
+                            <li class="flex items-start"><i data-lucide="award" class="w-5 h-5 mr-3 mt-1 flex-shrink-0"></i><span><strong>Mini-interviu</strong> pe tema „Youth at Work" postat pe Instagram şi LinkedIn.</span></li>
+                            <li class="flex items-start"><i data-lucide="award" class="w-5 h-5 mr-3 mt-1 flex-shrink-0"></i><span><strong>Secțiune dedicată</strong> în toate materialele tip newsletter.</span></li>
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- Slide 10: Recomandări -->
+        <section id="slide-10" class="slide bg-white">
+            <h2 class="text-3xl md:text-4xl font-bold mb-10 text-slate-800 text-center">Cum ne putem implica împreună?</h2>
+            <div class="grid grid-cols-1 md:grid-cols-3 gap-8 max-w-6xl">
+                <div class="bg-slate-100 p-6 rounded-lg shadow-lg"><h3 class="text-xl font-bold text-green-600 mb-2">Workshopuri Interactive</h3><p class="text-gray-600">Organizați workshopuri pe teme practice: studii de caz, simulări de business sau sesiuni de problem-solving.</p></div>
+                <div class="bg-slate-100 p-6 rounded-lg shadow-lg"><h3 class="text-xl font-bold text-green-600 mb-2">Programe de Mentorat</h3><p class="text-gray-600">Implicați experți din companie în sesiuni 1-la-1 de mentorat cu cei mai promițători participanți.</p></div>
+                <div class="bg-slate-100 p-6 rounded-lg shadow-lg"><h3 class="text-xl font-bold text-green-600 mb-2">Stagii de Practică</h3><p class="text-gray-600">Oferiți oportunități de internship sau stagii de practică dedicate absolvenților evenimentului.</p></div>
+            </div>
+        </section>
+
+        <!-- Slide 11: Contact -->
+        <section id="slide-11" class="slide bg-slate-800 text-white">
+            <img src="imagini/logo-aiesec-white.png" alt="AIESEC Cluj-Napoca" class="w-auto h-12 mx-auto mb-8">
+            <h2 class="text-4xl md:text-5xl font-bold mb-4 text-center">Să construim viitorul împreună.</h2>
+            <p class="text-lg md:text-xl text-slate-300 mb-8">Suntem pregătiți să răspundem oricărei întrebări.</p>
+            <div class="text-center">
+                <p class="font-bold text-xl">Bogdan Crăciun</p>
+                <p class="text-slate-300">Director Evenimente Externe și Relații Publice</p>
+                <div class="flex flex-col md:flex-row justify-center items-center gap-4 md:gap-6 mt-4 text-slate-300">
+                    <span class="flex items-center gap-2"><i data-lucide="mail" class="w-5 h-5"></i> bogdan.craciun@aiesec.org.ro</span>
+                    <span class="flex items-center gap-2"><i data-lucide="phone" class="w-5 h-5"></i> 0752 062 273</span>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <script>
+        lucide.createIcons();
+
+        document.addEventListener('DOMContentLoaded', () => {
+            // --- PIE CHART SCRIPT ---
+            const pieData = [
+                { label: 'UBB', value: 55, color: '#16a34a' },
+                { label: 'UTCN', value: 35, color: '#fdb913' },
+                { label: 'USAMV', value: 7, color: '#84cc16' },
+                { label: 'UMF', value: 3, color: '#a855f7' }
+            ];
+
+            const pieContainer = document.getElementById('pie-chart-container');
+            const legendContainer = document.getElementById('pie-legend');
+            const baseSize = 225;
+            const padding = 15;
+            const size = baseSize + padding * 2;
+            const radius = baseSize / 2;
+            const cx = size / 2;
+            const cy = size / 2;
+
+            let svg = `<svg width="${size}" height="${size}" viewBox="0 0 ${size} ${size}" xmlns="http://www.w3.org/2000/svg" class="pie-chart-svg" style="outline: none; background: transparent; overflow: visible;">`;
+            
+            let total = 0;
+            pieData.forEach(d => total += d.value);
+
+            let startAngle = -90; // Start from top
+            
+            pieData.forEach((slice, i) => {
+                const angle = (slice.value / total) * 360;
+                const endAngle = startAngle + angle;
+
+                const x1 = cx + radius * Math.cos(Math.PI * startAngle / 180);
+                const y1 = cy + radius * Math.sin(Math.PI * startAngle / 180);
+                const x2 = cx + radius * Math.cos(Math.PI * endAngle / 180);
+                const y2 = cy + radius * Math.sin(Math.PI * endAngle / 180);
+                
+                const largeArcFlag = angle > 180 ? 1 : 0;
+                
+                const d = `M${cx},${cy} L${x1},${y1} A${radius},${radius} 0 ${largeArcFlag},1 ${x2},${y2} Z`;
+
+                svg += `<path d="${d}" fill="${slice.color}" class="pie-slice" data-label="${slice.label}" data-value="${slice.value}" data-index="${i}" style="transform-origin: ${cx}px ${cy}px;"></path>`;
+                
+                startAngle = endAngle;
+            });
+
+            svg += `<circle cx="${cx}" cy="${cy}" r="${radius * 0.6}" fill="white" />`; // Inner circle
+            svg += `<text x="${cx}" y="${cy - 5}" text-anchor="middle" id="pie-text-label" class="pie-chart-subtext"></text>`;
+            svg += `<text x="${cx}" y="${cy + 25}" text-anchor="middle" id="pie-text-value" class="pie-chart-text"></text>`;
+            svg += `</svg>`;
+            pieContainer.innerHTML = svg;
+
+            pieData.forEach((slice, i) => {
+                legendContainer.innerHTML += `
+                    <div class="legend-item flex items-center" data-index="${i}">
+                        <span class="w-5 h-5 rounded-full mr-3" style="background-color: ${slice.color};"></span>
+                        <span>${slice.label}</span>
+                    </div>
+                `;
+            });
+            
+            const slices = document.querySelectorAll('.pie-slice');
+            const legendItems = document.querySelectorAll('.legend-item');
+            const textLabel = document.getElementById('pie-text-label');
+            const textValue = document.getElementById('pie-text-value');
+            
+            slices.forEach(slice => {
+                slice.addEventListener('mouseover', e => {
+                    const currentLabel = e.target.dataset.label;
+                    const currentValue = e.target.dataset.value;
+                    const currentIndex = e.target.dataset.index;
+
+                    textLabel.textContent = currentLabel;
+                    textValue.textContent = `${currentValue}%`;
+
+                    legendItems.forEach(item => {
+                        item.classList.add('dimmed');
+                    });
+                    legendItems[currentIndex].classList.remove('dimmed');
+                });
+                
+                slice.addEventListener('mouseout', e => {
+                    textLabel.textContent = '';
+                    textValue.textContent = '';
+                    legendItems.forEach(item => item.classList.remove('dimmed'));
+                });
+            });
+
+
+            // --- GENERAL SCRIPT ---
+            const slides = document.querySelectorAll('.slide');
+            const navDotsContainer = document.querySelector('.nav-dots');
+
+            slides.forEach((slide) => {
+                const dot = document.createElement('a');
+                dot.classList.add('nav-dot');
+                dot.href = `#${slide.id}`;
+                dot.dataset.slideId = slide.id;
+                navDotsContainer.appendChild(dot);
+            });
+            
+            const dots = document.querySelectorAll('.nav-dot');
+
+            const observerOptions = {
+                root: null, 
+                threshold: 0.5
+            };
+            
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        const activeSlideId = entry.target.id;
+                        dots.forEach(dot => {
+                            dot.classList.toggle('active', dot.dataset.slideId === activeSlideId);
+                        });
+                        
+                        const bars = entry.target.querySelectorAll('.bar');
+                        bars.forEach(el => {
+                           el.style.width = getComputedStyle(el).getPropertyValue('--target-width');
+                        });
+                        
+                        if (activeSlideId === 'slide-4') {
+                            const slices = document.querySelectorAll('#slide-4 .pie-slice');
+                            slices.forEach((slice, index) => {
+                                setTimeout(() => {
+                                    slice.classList.add('animate');
+                                }, index * 150);
+                            });
+                        }
+                    }
+                });
+            }, observerOptions);
+
+            slides.forEach(slide => {
+                observer.observe(slide);
+            });
+        });
+
+    </script>
+</body>
+</html>
+
